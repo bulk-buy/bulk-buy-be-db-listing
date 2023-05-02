@@ -176,7 +176,9 @@ describeGitHubActions("database CRUD operations", () => {
   let initialRecords;
   let createdEntity;
   const isSubset = (subset, superset) =>
-    Object.keys(subset).every((key) => subset[key] === superset[key]);
+    Object.keys(subset).every(
+      (key) => JSON.stringify(subset[key]) === JSON.stringify(superset[key])
+    );
 
   describe("create", () => {
     it("should retrieve existing records", (done) => {
