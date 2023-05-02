@@ -60,6 +60,6 @@ jobs:
       id: eks-control
       uses: nikosch86/github-action-eks-kubectl@main
       with:
-        command: "rollout restart deployment/eks-web-deployment -n webapp"
+        command: "rollout restart deployment/eks-web-deployment-listing -n webapp"
       env:
         EKS_CLUSTER: BulkBuy-EKSClusterWeb1
