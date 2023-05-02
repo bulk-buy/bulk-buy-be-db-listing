@@ -23,6 +23,7 @@ const options = {
       required: [
         "title",
         "description",
+        "categoryId",
         "startDate",
         "endDate",
         "minRequired",
@@ -34,6 +35,10 @@ const options = {
           description: "is required, must be a string",
         },
         description: {
+          bsonType: "string",
+          description: "is required, must be a string",
+        },
+        categoryId: {
           bsonType: "string",
           description: "is required, must be a string",
         },
@@ -93,6 +98,10 @@ const schema = new mongoose.Schema(
       required: true,
     },
     description: {
+      type: String,
+      required: true,
+    },
+    categoryId: {
       type: String,
       required: true,
     },

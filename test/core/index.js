@@ -168,6 +168,7 @@ describeGitHubActions("database CRUD operations", () => {
   const inputEntity = {
     title: "entityName",
     description: "description",
+    categoryId: "111111111111111111111111",
     startDate: new Date().toISOString(),
     endDate: new Date().toISOString(),
     minRequired: 100,
