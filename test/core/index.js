@@ -257,6 +257,28 @@ describeGitHubActions("database CRUD operations", () => {
           }
         });
     });
+
+    it("should be able to retrieve the new record by json", (done) => {
+      const encodedJSON = encodeURIComponent(JSON.stringify(inputEntity));
+      request(app.server)
+        .get(`/${config.dbTableName}/${encodedJSON}`)
+        .expect(200)
+        .end((err, res) => {
+          if (err) {
+            done(err);
+          } else {
+            assert.ok(Array.isArray(res.body), "should be Array");
+            assert.ok(
+              res.body.every((item) => typeof item === "object"),
+              "should be Array of object"
+            );
+            assert.ok(res.body.length, 1, "should be 1");
+            assert.deepEqual(createdEntity, res.body[0], "should be equal");
+            assert.ok(isSubset(inputEntity, res.body[0]));
+            done();
+          }
+        });
+    });
   });
 
   describe("retrieve", () => {

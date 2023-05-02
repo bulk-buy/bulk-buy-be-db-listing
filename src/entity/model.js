@@ -141,7 +141,19 @@ exports.createEntity = (data) => {
 
 // (R)ETRIEVE
 exports.getEntity = (query, incDeleted = false) => {
-  const condition = incDeletedCondition(incDeleted);
+  let condition;
+  try {
+    condition = JSON.parse(query);
+  } catch (err) {
+    // continue regardless of error
+  }
+
+  // power user override with JSON
+  if (typeof condition === "object") {
+    return Entity.find(condition).then((result) => result);
+  }
+
+  condition = incDeletedCondition(incDeleted);
   if (typeof query === "string") {
     condition._id = query;
     return Entity.findOne(condition).then((result) => result);
