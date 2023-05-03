@@ -49,7 +49,16 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://master.d3cj9tqjeu9li6.amplifyapp.com",
+      "*",
+    ],
+    credentials: true,
+  })
+);
 app.use(compression());
 
 app.get("/favicon.ico", (req, res) => res.sendStatus(204));
