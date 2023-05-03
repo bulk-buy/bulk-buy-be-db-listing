@@ -8,6 +8,7 @@
  * Internal dependencies.
  */
 
+const logger = require("../services/fileLogger").getLogger("controller");
 const model = require("./model");
 
 // ===============
@@ -22,8 +23,9 @@ exports.create = (req, res) => {
       res.status(201).send(created);
     })
     .catch(
-      /* istanbul ignore next */ () => {
+      /* istanbul ignore next */ (err) => {
         res.sendStatus(500);
+        logger.error(err);
       }
     );
 };
@@ -38,8 +40,9 @@ exports.get = (req, res) => {
         res.status(200).send(data);
       })
       .catch(
-        /* istanbul ignore next */ () => {
+        /* istanbul ignore next */ (err) => {
           res.sendStatus(500);
+          logger.error(err);
         }
       );
   }
@@ -55,8 +58,9 @@ exports.getById = (req, res) => {
       }
     })
     .catch(
-      /* istanbul ignore next */ () => {
+      /* istanbul ignore next */ (err) => {
         res.sendStatus(500);
+        logger.error(err);
       }
     );
 };
@@ -81,8 +85,9 @@ exports.updateById = async (req, res) => {
       else res.status(200).send(updated);
     })
     .catch(
-      /* istanbul ignore next */ () => {
+      /* istanbul ignore next */ (err) => {
         res.sendStatus(500);
+        logger.error(err);
       }
     );
 };
@@ -113,8 +118,9 @@ exports.removeById = async (req, res) => {
     .then((deleted) => {
       res.sendStatus(!deleted ? 409 : 204);
     })
-    .catch(() => {
+    .catch((err) => {
       res.sendStatus(500);
+      logger.error(err);
     });
 };
 */
