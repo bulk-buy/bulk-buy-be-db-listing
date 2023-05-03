@@ -14,7 +14,7 @@ const express = require("express");
 
 const config = require("./config");
 const controller = require("./entity/controller");
-const { version } = require("../package.json");
+const { name, version } = require("../package.json");
 
 // ===============
 // ROUTES
@@ -24,7 +24,7 @@ const router = express.Router();
 
 // endpoint: /
 router.get("/", (req, res) => {
-  res.send({ version });
+  res.send({ name, version });
 });
 
 // endpoint: /entities
