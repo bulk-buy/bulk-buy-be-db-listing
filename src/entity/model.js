@@ -126,7 +126,7 @@ const schema = new mongoose.Schema(
     },
   },
   {
-    shardKey: { deletedAt: 1 },
+    shardKey: { _id: 1, deletedAt: 1 },
     timestamps: true,
   }
 );
